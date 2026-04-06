@@ -372,7 +372,7 @@ export default function TraditionalInvitation() {
               <div className="info-card flex items-center justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
                 <i className="fas fa-user-circle text-amber-600 text-lg"></i>
                 <p className="font-bold text-sm text-pink-900 font-devanagari">
-                  निमंत्रक : सासणे, गारवे
+                        निमंत्रक : सासणे, गारवे , बागडी , शिंदे
                 </p>
               </div>
             </div>
@@ -534,7 +534,7 @@ export default function TraditionalInvitation() {
 <div className="mt-4 space-y-2">
   <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
     <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
-      निमंत्रक : सासणे, गारवे
+      निमंत्रक : सासणे, गारवे , बागडी , शिंदे
     </p>
   </div>
 </div>
