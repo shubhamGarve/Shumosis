@@ -162,7 +162,8 @@ export default function TraditionalInvitation() {
                   <span className="text-4xl block mb-2">🪷</span>
                   <h2 className="text-2xl font-bold text-pink-700 font-devanagari">गृह प्रवेश निमंत्रण</h2>
                   <p className="text-base text-amber-600 font-devanagari mt-2">सप्रेम नमस्कार 🙏</p>
-                  <p className="text-sm text-pink-800 font-devanagari mt-3">निमंत्रक : शुभम गारवे</p>
+                        <p className="text-lg text-emerald-800 font-semibold drop-shadow-md font-devanagari">
+निमंत्रक : शुभम गारवे</p>
                 </div>
               </div>
             )}
@@ -329,13 +330,12 @@ export default function TraditionalInvitation() {
  
             {/* Date */}
             <div
-              className={`flex items-center justify-center gap-2 mt-3 transition-all duration-1000 delay-500 ${
+              className={`flex items-center justify-center mt-3 transition-all duration-1000 delay-500 ${
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
               }`}
             >
-              <span className="text-amber-600 animate-bounce-slow">📅</span>
-              <p className="text-lg text-amber-700 drop-shadow-md font-devanagari">
-                गुरुवार, २३ एप्रिल २०२६
+              <p className="text-lg text-emerald-800 font-semibold drop-shadow-md font-devanagari">
+                गुरुवार, 23 April 2026, सकाळी 9:00 वाजता
               </p>
             </div>
  
@@ -418,17 +418,29 @@ export default function TraditionalInvitation() {
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
               }`}
             >
-              <div className="info-card flex items-center justify-center gap-2 bg-pink-50/80 rounded-lg p-2 mx-3 border border-pink-200 hover:shadow-md transition-shadow">
-                <i className="fas fa-map-marker-alt text-pink-600 text-lg animate-bounce-slow"></i>
-                <p className="font-bold text-sm text-pink-900 font-devanagari">
-                  स्थळ : पाटील गल्ली, गणपती मंदिर जवळ, माळभाग, शिरढोण
+              <div className="info-card flex flex-col items-center gap-1 bg-pink-50/80 rounded-lg p-3 mx-3 border border-pink-200 hover:shadow-md transition-shadow">
+                <div className="flex items-center gap-2">
+                  <i className="fas fa-map-marker-alt text-pink-600 text-lg animate-bounce-slow"></i>
+                  <p className="font-bold text-sm text-pink-900 font-devanagari">
+                    स्थळ : पाटील गल्ली, गणपती मंदिर जवळ, माळभाग, शिरढोण
+                  </p>
+                </div>
+                <p className="text-xs text-pink-700 font-devanagari">
+                  प्रसादाची वेळ : दुपारी 12:00 वाजता 🌸
                 </p>
               </div>
-              <div className="info-card flex items-center justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
-                <i className="fas fa-user-circle text-amber-600 text-lg"></i>
-                <p className="font-bold text-sm text-pink-900 font-devanagari">
-                  निमंत्रक : सासणे, गारवे , बागडी , शिंदे
-                </p>
+              <div className="info-card flex flex-col items-center gap-1 bg-amber-50/80 rounded-lg p-3 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
+                <div className="flex items-center gap-2">
+                  <i className="fas fa-user-circle text-amber-600 text-lg"></i>
+                  <p className="font-bold text-sm text-pink-900 font-devanagari">
+                    निमंत्रक : शुभम अरविंद गारवे, सुनीता अरविंद गारवे 🌸
+                  </p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <a href="tel:8767938302" className="text-xs text-pink-700 font-devanagari">📞 8767938302</a>
+                  <span className="text-pink-300">|</span>
+                  <a href="tel:9579701191" className="text-xs text-pink-700 font-devanagari">9579701191</a>
+                </div>
               </div>
             </div>
  
@@ -560,8 +572,8 @@ export default function TraditionalInvitation() {
               </h1>
  
               {/* Date */}
-              <p className="text-sm mt-1 text-amber-700 font-devanagari">
-                📅 गुरुवार, २३ एप्रिल २०२६
+              <p className="text-lg text-emerald-800 font-semibold drop-shadow-md font-devanagari">
+                गुरुवार, 23 April 2026, सकाळी 9:00 वाजता
               </p>
  
               {/* Personalized Message */}
@@ -602,7 +614,7 @@ export default function TraditionalInvitation() {
                 </div>
                 <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow mt-2">
                   <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
-                    स्थळ शोधण्यासाठी QR कोड स्कॅन करा
+                    स्थळ शोधण्यासाठी QR कोड स्कॅन करा.
                   </p>
                 </div>
               </div>
@@ -610,7 +622,7 @@ export default function TraditionalInvitation() {
               <div className="mt-4 space-y-2">
                 <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
                   <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
-                    निमंत्रक : शुभम गारवे ,सासणे, गारवे , बागडी , शिंदे
+                     निमंत्रक : गारवे, सासणे, बागडी, शिंदे.
                   </p>
                 </div>
               </div>
@@ -623,7 +635,7 @@ export default function TraditionalInvitation() {
           >
             <span className="flex items-center gap-2 font-devanagari text-xs">
               <i className="fas fa-download"></i>
-              निमंत्रण डाउनलोड करा
+              निमंत्रण डाउनलोड करा.
             </span>
           </button>
         </div>
