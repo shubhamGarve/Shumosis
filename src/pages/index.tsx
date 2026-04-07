@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import * as htmlToImage from "html-to-image";
-
+ 
 export default function TraditionalInvitation() {
   const [timeLeft, setTimeLeft] = useState({
     days: "00",
@@ -10,7 +10,7 @@ export default function TraditionalInvitation() {
     minutes: "00",
     seconds: "00",
   });
-
+ 
   const units: Array<keyof typeof timeLeft> = ["days", "hours", "minutes", "seconds"];
   const unitLabels: Record<string, string> = {
     days: "दिवस",
@@ -18,37 +18,37 @@ export default function TraditionalInvitation() {
     minutes: "मिनिटे",
     seconds: "सेकंद",
   };
-
+ 
   const [showPopup, setShowPopup] = useState(false);
   const [guestName, setGuestName] = useState("");
   const [finalName, setFinalName] = useState("");
   const [showPersonalInvite, setShowPersonalInvite] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const inviteRef = useRef<HTMLDivElement>(null);
-
+ 
   useEffect(() => {
     setIsLoaded(true);
   }, []);
-
+ 
   // Countdown timer
   useEffect(() => {
     const inaugurationDate = new Date("April 23, 2026 12:30:00").getTime();
-
+ 
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const distance = inaugurationDate - now;
-
+ 
       if (distance < 0) {
         setTimeLeft({ days: "00", hours: "00", minutes: "00", seconds: "00" });
         clearInterval(interval);
         return;
       }
-
+ 
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
+ 
       setTimeLeft({
         days: days.toString().padStart(2, "0"),
         hours: hours.toString().padStart(2, "0"),
@@ -56,13 +56,13 @@ export default function TraditionalInvitation() {
         seconds: seconds.toString().padStart(2, "0"),
       });
     }, 1000);
-
+ 
     return () => clearInterval(interval);
   }, []);
-
+ 
   const handleDownload = () => {
     if (!inviteRef.current) return;
-
+ 
     htmlToImage
       .toPng(inviteRef.current, {
         cacheBust: true,
@@ -90,14 +90,14 @@ export default function TraditionalInvitation() {
         console.error("❌ Error generating image:", err);
       });
   };
-
+ 
   const handlePopupSubmit = () => {
     if (guestName.trim() === "") return;
     setFinalName(guestName);
     setShowPopup(false);
     setShowPersonalInvite(true);
   };
-
+ 
   return (
     <>
       <Head>
@@ -105,11 +105,11 @@ export default function TraditionalInvitation() {
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
         <link
-          href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Modak&family=Baloo+Bhai+2:wght@400;700&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@400;500;600;700&family=Modak&family=Baloo+Bhai+2:wght@400;700&display=swap%22"
           rel="stylesheet"
         />
       </Head>
-
+ 
       {/* Floating Decorative Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {[...Array(8)].map((_, i) => (
@@ -127,7 +127,7 @@ export default function TraditionalInvitation() {
           </div>
         ))}
       </div>
-
+ 
       {/* Main Invitation Card */}
       <div className="min-h-screen flex flex-col items-center justify-center text-center px-4 py-6 relative overflow-hidden bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50">
         {/* Animated Background */}
@@ -140,7 +140,7 @@ export default function TraditionalInvitation() {
           <div className="absolute inset-0 bg-gradient-to-b from-amber-50/80 via-white/90 to-orange-50/80"></div>
           <div className="absolute inset-0 mandala-bg opacity-5"></div>
         </div>
-
+ 
         {/* Main Card */}
         <div
           className={`relative z-10 w-full rounded-2xl shadow-xl p-4 overflow-hidden bg-white transform transition-all duration-1000 ${
@@ -156,7 +156,7 @@ export default function TraditionalInvitation() {
               className="w-full h-full object-cover"
             />
           </div>
-
+ 
           {/* Decorative Corner Elements */}
           <div className="absolute top-0 left-0 w-16 h-16 opacity-60 corner-decoration">
             <svg viewBox="0 0 100 100" className="w-full h-full text-amber-600">
@@ -176,7 +176,7 @@ export default function TraditionalInvitation() {
               />
             </svg>
           </div>
-
+ 
           <div className="relative z-10">
             {/* Ganesh Section */}
             <div
@@ -202,15 +202,12 @@ export default function TraditionalInvitation() {
                   />
                 ))}
               </div>
-              
+ 
               {/* Aura + Image container */}
               <div className="relative ganesh-container" style={{ width: 140, height: 140 }}>
-                {/* Radial glow background */}
                 <div className="absolute inset-0 rounded-full animate-glow-bg"
                   style={{ background: "radial-gradient(circle, rgba(255,200,50,0.4) 0%, rgba(255,150,0,0.15) 60%, transparent 100%)" }}
                 />
-                
-                {/* Spinning mandala SVG ring */}
                 <svg
                   className="absolute animate-spin-slow"
                   style={{ width: 118, height: 118, top: 11, left: 11 }}
@@ -229,8 +226,6 @@ export default function TraditionalInvitation() {
                     />
                   ))}
                 </svg>
-                
-                {/* Ganesh Image */}
                 <Image
                   src="/ganesha4.jpg"
                   alt="Shree Ganesh"
@@ -240,13 +235,10 @@ export default function TraditionalInvitation() {
                   style={{ top: 20, left: 20 }}
                 />
               </div>
-              
-              {/* Mantra Text */}
+ 
               <p className="text-amber-700 text-base mt-2 font-devanagari tracking-wide">
                 ॥ श्री गणेशाय नमः ॥
               </p>
-              
-              {/* Decorative dot divider */}
               <div className="flex items-center gap-1 mt-1 opacity-70">
                 <div className="h-px w-12 bg-gradient-to-r from-transparent to-amber-400 animate-line-pulse" />
                 {[0, 0.3, 0.6].map((d, i) => (
@@ -255,8 +247,6 @@ export default function TraditionalInvitation() {
                 ))}
                 <div className="h-px w-12 bg-gradient-to-l from-transparent to-amber-400 animate-line-pulse" />
               </div>
-              
-              {/* Main Title */}
               <h1
                 className="text-3xl font-extrabold mt-4 font-devanagari animate-title-shimmer drop-shadow-lg"
                 style={{
@@ -269,8 +259,8 @@ export default function TraditionalInvitation() {
                 गृह प्रवेश निमंत्रण
               </h1>
             </div>
-
-            {/* Date with Icon Animation */}
+ 
+            {/* Date */}
             <div
               className={`flex items-center justify-center gap-2 mt-3 transition-all duration-1000 delay-500 ${
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
@@ -281,8 +271,8 @@ export default function TraditionalInvitation() {
                 गुरुवार, २३ एप्रिल २०२६
               </p>
             </div>
-
-            {/* House Image with Animated Border */}
+ 
+            {/* House Image */}
             <div
               className={`relative mt-4 mx-auto transition-all duration-1000 delay-700 ${
                 isLoaded ? "scale-100 opacity-100" : "scale-95 opacity-0"
@@ -303,14 +293,12 @@ export default function TraditionalInvitation() {
                   </div>
                 </div>
               </div>
-
-              {/* Home Icon Badge */}
               <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-amber-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-md animate-bounce-slow">
                 🏠 नवीन वास्तू
               </div>
             </div>
-
-            {/* Countdown Section */}
+ 
+            {/* Countdown */}
             <div
               className={`my-5 transition-all duration-1000 delay-900 ${
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
@@ -341,8 +329,8 @@ export default function TraditionalInvitation() {
                 ))}
               </div>
             </div>
-
-            {/* Message Section */}
+ 
+            {/* Message */}
             <div
               className={`mt-4 px-3 space-y-3 transition-all duration-1000 delay-1000 ${
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
@@ -356,8 +344,8 @@ export default function TraditionalInvitation() {
                 </p>
               </div>
             </div>
-
-            {/* Venue & Host with Icons */}
+ 
+            {/* Venue & Host */}
             <div
               className={`mt-4 space-y-2 transition-all duration-1000 delay-1100 ${
                 isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
@@ -372,16 +360,37 @@ export default function TraditionalInvitation() {
               <div className="info-card flex items-center justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
                 <i className="fas fa-user-circle text-amber-600 text-lg"></i>
                 <p className="font-bold text-sm text-pink-900 font-devanagari">
-                        निमंत्रक : सासणे, गारवे , बागडी , शिंदे
+                  निमंत्रक : सासणे, गारवे , बागडी , शिंदे
                 </p>
               </div>
             </div>
+ 
+            {/* ✅ QR Code Section in General Invitation */}
+            <div
+              className={`mt-4 flex flex-col items-center transition-all duration-1000 delay-1200 ${
+                isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+              }`}
+            >
+              <div className="flex flex-col items-center bg-amber-50/80 rounded-xl p-3 border border-amber-200 mx-3 w-full">
+                <p className="font-bold text-xs text-pink-900 font-devanagari mb-2">
+                  📍 स्थळ शोधण्यासाठी QR कोड स्कॅन करा
+                </p>
+                <div className="w-24 h-24 border-2 border-amber-400 rounded-lg overflow-hidden bg-white shadow-md">
+                  <img
+                    src="/qr.jpg"
+                    alt="Location QR Code"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+ 
           </div>
         </div>
-
+ 
         {/* Download Button */}
         <div
-          className={`text-center mt-6 transition-all duration-1000 delay-1200 ${
+          className={`text-center mt-6 transition-all duration-1000 delay-1300 ${
             isLoaded ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
           }`}
         >
@@ -397,7 +406,7 @@ export default function TraditionalInvitation() {
           </button>
         </div>
       </div>
-
+ 
       {/* Popup Modal */}
       {showPopup && (
         <div className="fixed inset-0 flex items-center justify-center bg-black/60 backdrop-blur-sm z-50 animate-fade-in">
@@ -436,162 +445,148 @@ export default function TraditionalInvitation() {
           </div>
         </div>
       )}
-
+ 
       {/* Personalized Invitation */}
-{showPersonalInvite && (
-  <div className="my-6 flex flex-col items-center px-4 animate-fade-in">
-    <h2 className="text-xl font-bold text-pink-800 mb-4 font-devanagari flex items-center gap-2">
-      <span>✨</span>
-      तुमचे वैयक्तिक निमंत्रण
-      <span>✨</span>
-    </h2>
-
-    <div
-      ref={inviteRef}
-      className="relative w-full rounded-2xl shadow-xl p-4 bg-white overflow-hidden"
-      style={{ maxWidth: "95vw" }}
-    >
-      <div className="absolute inset-0 z-0">
-        <img
-          src="/bg55.jpg"
-          alt="Background"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="relative z-10 text-center">
-        {/* Ganesh */}
-        <img
-          src="/ganesha4.jpg"
-          alt="Shree Ganesh"
-          className="mx-auto mb-2 w-[70px] h-[70px] rounded-full shadow-lg border-4 border-amber-400"
-        />
-        <p className="text-amber-700 text-sm font-devanagari">
-          ॥ श्री गणेशाय नमः ॥
-        </p>
-
-        {/* Title */}
-        <h1
-          className="text-2xl font-extrabold mt-2 font-devanagari drop-shadow-lg"
-          style={{
-            backgroundSize: "300% auto",
-            WebkitBackgroundClip: "text",
-            color: "#9d174d",
-            backgroundClip: "text"
-          }}
-        >
-          गृह प्रवेश निमंत्रण
-        </h1>
-        {/* Date */}
-        <p className="text-sm mt-1 text-amber-700 font-devanagari">
-          📅 गुरुवार, २३ एप्रिल २०२६
-        </p>
-
-        {/* Personalized Message */}
-        <div className="bg-gradient-to-r from-amber-50/90 to-orange-50/90 rounded-lg p-2 mt-2 border border-amber-200">
-          <p className="text-sm text-pink-900 font-devanagari leading-relaxed">
-            आदरणीय{" "}
-            <span className="font-bold text-pink-700 text-base">{finalName}</span>{" "}
-            सप्रेम नमस्कार 🙏
-          </p>
-          <p className="text-xs text-pink-800 font-devanagari mt-1 leading-relaxed">
-            आमच्या नवीन वास्तूची शांती व सत्यनारायण महापूजा आयोजित केली आहे! तरी आपण सहकुटुंब,
-            सहपरिवार व मित्रमंडळी उपस्थित राहून तीर्थप्रसादाचा लाभ घ्यावा ही
-            विनंती... 🌸
-          </p>
-        </div>
-
-        {/* House Image */}
-        <div className="relative mt-2 mx-auto p-1 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 shadow-md">
-          <div className="p-1 rounded-lg bg-gradient-to-r from-pink-800 via-pink-600 to-pink-800">
-            <div className="relative h-32 w-full rounded-lg overflow-hidden">
+      {showPersonalInvite && (
+        <div className="my-6 flex flex-col items-center px-4 animate-fade-in">
+          <h2 className="text-xl font-bold text-pink-800 mb-4 font-devanagari flex items-center gap-2">
+            <span>✨</span>
+            तुमचे वैयक्तिक निमंत्रण
+            <span>✨</span>
+          </h2>
+ 
+          <div
+            ref={inviteRef}
+            className="relative w-full rounded-2xl shadow-xl p-4 bg-white overflow-hidden"
+            style={{ maxWidth: "95vw" }}
+          >
+            <div className="absolute inset-0 z-0">
               <img
-                src="/home.jpg"
-                alt="Our New Home"
-                className="rounded-lg w-full h-full object-cover"
+                src="/bg55.jpg"
+                alt="Background"
+                className="w-full h-full object-cover"
               />
             </div>
+ 
+            <div className="relative z-10 text-center">
+              {/* Ganesh */}
+              <img
+                src="/ganesha4.jpg"
+                alt="Shree Ganesh"
+                className="mx-auto mb-2 w-[70px] h-[70px] rounded-full shadow-lg border-4 border-amber-400"
+              />
+              <p className="text-amber-700 text-sm font-devanagari">
+                ॥ श्री गणेशाय नमः ॥
+              </p>
+ 
+              {/* Title */}
+              <h1
+                className="text-2xl font-extrabold mt-2 font-devanagari drop-shadow-lg"
+                style={{
+                  backgroundSize: "300% auto",
+                  WebkitBackgroundClip: "text",
+                  color: "#9d174d",
+                  backgroundClip: "text"
+                }}
+              >
+                गृह प्रवेश निमंत्रण
+              </h1>
+ 
+              {/* Date */}
+              <p className="text-sm mt-1 text-amber-700 font-devanagari">
+                📅 गुरुवार, २३ एप्रिल २०२६
+              </p>
+ 
+              {/* Personalized Message */}
+              <div className="bg-gradient-to-r from-amber-50/90 to-orange-50/90 rounded-lg p-2 mt-2 border border-amber-200">
+                <p className="text-sm text-pink-900 font-devanagari leading-relaxed">
+                  आदरणीय{" "}
+                  <span className="font-bold text-pink-700 text-base">{finalName}</span>{" "}
+                  सप्रेम नमस्कार 🙏
+                </p>
+                <p className="text-xs text-pink-800 font-devanagari mt-1 leading-relaxed">
+                  आमच्या नवीन वास्तूची शांती व सत्यनारायण महापूजा आयोजित केली आहे! तरी आपण सहकुटुंब,
+                  सहपरिवार व मित्रमंडळी उपस्थित राहून तीर्थप्रसादाचा लाभ घ्यावा ही
+                  विनंती... 🌸
+                </p>
+              </div>
+ 
+              {/* House Image */}
+              <div className="relative mt-2 mx-auto p-1 rounded-xl bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 shadow-md">
+                <div className="p-1 rounded-lg bg-gradient-to-r from-pink-800 via-pink-600 to-pink-800">
+                  <div className="relative h-32 w-full rounded-lg overflow-hidden">
+                    <img
+                      src="/home.jpg"
+                      alt="Our New Home"
+                      className="rounded-lg w-full h-full object-cover"
+                    />
+                  </div>
+                </div>
+              </div>
+ 
+              {/* QR Code Section */}
+              <div className="mt-4 flex flex-col items-center">
+                <div className="relative w-24 h-24 border-2 border-amber-400 rounded-lg overflow-hidden bg-white">
+                  <img
+                    src="/qr.jpg"
+                    alt="Location QR Code"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+                <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow mt-2">
+                  <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
+                    स्थळ शोधण्यासाठी QR कोड स्कॅन करा
+                  </p>
+                </div>
+              </div>
+ 
+              <div className="mt-4 space-y-2">
+                <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
+                  <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
+                    निमंत्रक : सासणे, गारवे , बागडी , शिंदे
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
+ 
+          <button
+            onClick={handleDownload}
+            className="mt-3 group relative px-4 py-2 bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+          >
+            <span className="flex items-center gap-2 font-devanagari text-xs">
+              <i className="fas fa-download"></i>
+              निमंत्रण डाउनलोड करा
+            </span>
+          </button>
         </div>
-
-        {/* QR Code Section */}
-       {/* QR Code Section */}
-<div className="mt-4 flex flex-col items-center">
-  <div className="relative w-24 h-24 border-2 border-amber-400 rounded-lg overflow-hidden bg-white">
-    <img
-      src="/qr.jpg"
-      alt="Location QR Code"
-      className="w-full h-full object-cover"
-    />
-  </div>
-  <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow mt-2">
-    <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
-      स्थळ शोधण्यासाठी QR कोड स्कॅन करा
-    </p>
-  </div>
-</div>
-
-<div className="mt-4 space-y-2">
-  <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
-    <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
-      निमंत्रक : सासणे, गारवे , बागडी , शिंदे
-    </p>
-  </div>
-</div>
-      </div>
-    </div>
-    <button
-      onClick={handleDownload}
-      className="mt-3 group relative px-4 py-2 bg-gradient-to-r from-green-600 via-emerald-500 to-green-600 text-white font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300"
-    >
-      <span className="flex items-center gap-2 font-devanagari text-xs">
-        <i className="fas fa-download"></i>
-        निमंत्रण डाउनलोड करा
-      </span>
-    </button>
-  </div>
-)}
+      )}
+ 
       <style jsx>{`
         .font-devanagari {
           font-family: "Noto Serif Devanagari", serif;
         }
  
-        /* Floating flowers animation */
         .floating-flower {
           animation: float-around 20s ease-in-out infinite;
         }
  
         @keyframes float-around {
-          0%,
-          100% {
-            transform: translate(0, 0) rotate(0deg);
-          }
-          25% {
-            transform: translate(30px, -30px) rotate(90deg);
-          }
-          50% {
-            transform: translate(-20px, 20px) rotate(180deg);
-          }
-          75% {
-            transform: translate(20px, 30px) rotate(270deg);
-          }
+          0%, 100% { transform: translate(0, 0) rotate(0deg); }
+          25% { transform: translate(30px, -30px) rotate(90deg); }
+          50% { transform: translate(-20px, 20px) rotate(180deg); }
+          75% { transform: translate(20px, 30px) rotate(270deg); }
         }
  
-        /* Slow spin for decorative ring */
         .animate-spin-slow {
           animation: spin 8s linear infinite;
         }
  
         @keyframes spin {
-          from {
-            transform: rotate(0deg);
-          }
-          to {
-            transform: rotate(360deg);
-          }
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
         }
  
-        /* Ganesh image hover effect */
         .ganesh-image {
           transition: transform 0.5s ease;
         }
@@ -600,85 +595,52 @@ export default function TraditionalInvitation() {
           transform: scale(1.05);
         }
  
-        /* Bounce slow animation */
         .animate-bounce-slow {
           animation: bounce-slow 2s ease-in-out infinite;
         }
  
         @keyframes bounce-slow {
-          0%,
-          100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-5px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
         }
  
-        /* Border glow for house frame */
         .animate-border-glow {
           animation: border-glow 3s ease-in-out infinite;
         }
  
         @keyframes border-glow {
-          0%,
-          100% {
-            box-shadow: 0 0 10px rgba(245, 158, 11, 0.5);
-          }
-          50% {
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.8);
-          }
+          0%, 100% { box-shadow: 0 0 10px rgba(245, 158, 11, 0.5); }
+          50% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.8); }
         }
  
-        /* Countdown number animation */
         .countdown-number {
           animation: countdown-pulse 1s ease-in-out infinite;
         }
  
         @keyframes countdown-pulse {
-          0%,
-          100% {
-            transform: scale(1);
-          }
-          50% {
-            transform: scale(1.05);
-          }
+          0%, 100% { transform: scale(1); }
+          50% { transform: scale(1.05); }
         }
  
-        /* Countdown box entrance */
         .countdown-box {
           animation: slide-up 0.5s ease-out forwards;
           opacity: 0;
         }
  
         @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
  
-        /* Message cards animation */
         .message-card {
           animation: fade-slide 0.6s ease-out forwards;
         }
  
         @keyframes fade-slide {
-          from {
-            opacity: 0;
-            transform: translateX(-20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
+          from { opacity: 0; transform: translateX(-20px); }
+          to { opacity: 1; transform: translateX(0); }
         }
  
-        /* Info cards hover */
         .info-card {
           transition: all 0.3s ease;
         }
@@ -687,114 +649,67 @@ export default function TraditionalInvitation() {
           transform: translateY(-2px);
         }
  
-        /* Fade in animation */
         .animate-fade-in {
           animation: fade-in 0.4s ease-out;
         }
  
         @keyframes fade-in {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
  
-        /* Scale up animation for popup */
         .animate-scale-up {
           animation: scale-up 0.3s ease-out;
         }
  
         @keyframes scale-up {
-          from {
-            opacity: 0;
-            transform: scale(0.9);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
+          from { opacity: 0; transform: scale(0.9); }
+          to { opacity: 1; transform: scale(1); }
         }
  
-        /* Corner decoration animation */
         .corner-decoration {
           animation: corner-pulse 4s ease-in-out infinite;
         }
  
         @keyframes corner-pulse {
-          0%,
-          100% {
-            opacity: 0.4;
-          }
-          50% {
-            opacity: 0.7;
-          }
+          0%, 100% { opacity: 0.4; }
+          50% { opacity: 0.7; }
         }
  
-        /* Mandala background pattern */
         .mandala-bg {
           background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23d97706' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
           animation: mandala-rotate 60s linear infinite;
         }
  
         @keyframes mandala-rotate {
-          from {
-            background-position: 0 0;
-          }
-          to {
-            background-position: 1000px 1000px;
-          }
+          from { background-position: 0 0; }
+          to { background-position: 1000px 1000px; }
         }
-
-        /* Petal fall animation */
+ 
         @keyframes petalFall {
-          0% {
-            opacity: 0;
-            transform: translateY(-20px) rotate(0deg);
-          }
-          10% {
-            opacity: 1;
-          }
-          90% {
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(calc(100vh + 20px)) rotate(360deg);
-            opacity: 0;
-          }
+          0% { opacity: 0; transform: translateY(-20px) rotate(0deg); }
+          10% { opacity: 1; }
+          90% { opacity: 1; }
+          100% { transform: translateY(calc(100vh + 20px)) rotate(360deg); opacity: 0; }
         }
-
-        /* Line pulse animation */
+ 
         @keyframes line-pulse {
-          0%, 100% {
-            opacity: 0.7;
-          }
-          50% {
-            opacity: 1;
-          }
+          0%, 100% { opacity: 0.7; }
+          50% { opacity: 1; }
         }
-
-        /* Dot bounce animation */
+ 
         @keyframes dot-bounce {
-          0%, 100% {
-            transform: translateY(0);
-          }
-          50% {
-            transform: translateY(-5px);
-          }
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
         }
-
-        /* Title shimmer effect */
+ 
         @keyframes title-shimmer {
-          0% {
-            background-position: 0% 50%;
-          }
-          100% {
-            background-position: 100% 50%;
-          }
+          0% { background-position: 0% 50%; }
+          100% { background-position: 100% 50%; }
         }
       `}</style>
     </>
   );
 }
+ 
+ 
