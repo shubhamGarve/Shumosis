@@ -24,8 +24,11 @@ export default function TraditionalInvitation() {
   const [finalName, setFinalName] = useState("");
   const [showPersonalInvite, setShowPersonalInvite] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [showEnvelope, setShowEnvelope] = useState(true);
+  const [envelopeOpen, setEnvelopeOpen] = useState(false);
+  const [invitationReveal, setInvitationReveal] = useState(false);
   const inviteRef = useRef<HTMLDivElement>(null);
- 
+  
   useEffect(() => {
     setIsLoaded(true);
   }, []);
@@ -109,7 +112,71 @@ export default function TraditionalInvitation() {
           rel="stylesheet"
         />
       </Head>
- 
+
+      {/* Envelope Animation */}
+      {showEnvelope && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-b from-amber-50 via-orange-50 to-yellow-50 cursor-pointer"
+          onClick={() => {
+            if (!envelopeOpen) {
+              setEnvelopeOpen(true);
+              setTimeout(() => setInvitationReveal(true), 600);
+              setTimeout(() => setShowEnvelope(false), 3000);
+            }
+          }}
+        >
+          <div className="relative" style={{ width: '85vw', maxWidth: 320, height: 220 }}>
+            {/* Envelope Back */}
+            <div className="absolute inset-0 bg-gradient-to-br from-amber-300 to-amber-200 rounded-lg shadow-2xl border-2 border-amber-400"></div>
+            
+            {/* Envelope Flap - Opens when clicked */}
+            <div 
+              className="absolute top-0 left-0 right-0 transition-all duration-700 ease-out z-20"
+              style={{
+                height: '50%',
+                background: 'linear-gradient(180deg, #fcd34d 0%, #fbbf24 50%, #f59e0b 100%)',
+                clipPath: 'polygon(0 0, 50% 100%, 100% 0)',
+                transformOrigin: '50% 0%',
+                transform: envelopeOpen ? 'rotate(160deg)' : 'rotate(0deg)',
+                filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.1))'
+              }}
+            />
+            
+            {/* Envelope Front */}
+            <div 
+              className="absolute inset-0 bg-gradient-to-br from-amber-100 to-yellow-50 rounded-lg"
+              style={{ clipPath: 'polygon(0 40%, 50% 100%, 100% 40%, 100% 100%, 0 100%)' }}
+            />
+            
+            {/* Inner Content */}
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className={`text-center transition-all duration-500 ${envelopeOpen ? 'opacity-0 transform -translate-y-4' : 'opacity-100'}`}>
+                <span className="text-4xl">🪷</span>
+              </div>
+            </div>
+            
+            {/* Invitation Card Slides Out */}
+            {invitationReveal && (
+              <div className="absolute inset-0 flex items-center justify-center z-30 animate-invitation-out">
+                <div className="bg-white rounded-xl shadow-2xl p-6 w-[90%] border-2 border-amber-300 text-center">
+                  <span className="text-4xl block mb-2">🪷</span>
+                  <h2 className="text-2xl font-bold text-pink-700 font-devanagari">गृह प्रवेश निमंत्रण</h2>
+                  <p className="text-base text-amber-600 font-devanagari mt-2">सप्रेम नमस्कार 🙏</p>
+                  <p className="text-sm text-pink-800 font-devanagari mt-3">निमंत्रक : शुभम गारवे</p>
+                </div>
+              </div>
+            )}
+          </div>
+          
+          {/* Click to Open Text */}
+          {!envelopeOpen && (
+            <div className="absolute bottom-16 animate-bounce text-amber-700 font-devanagari text-sm bg-white/80 px-4 py-2 rounded-full shadow-md">
+              क्लिक करा ✨
+            </div>
+          )}
+        </div>
+      )}
+
       {/* Floating Decorative Elements */}
       <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
         {[...Array(8)].map((_, i) => (
@@ -543,7 +610,7 @@ export default function TraditionalInvitation() {
               <div className="mt-4 space-y-2">
                 <div className="info-card w-full max-w-[90%] flex justify-center gap-2 bg-amber-50/80 rounded-lg p-2 mx-3 border border-amber-200 hover:shadow-md transition-shadow">
                   <p className="font-bold text-xs text-pink-900 font-devanagari text-center">
-                    निमंत्रक : सासणे, गारवे , बागडी , शिंदे
+                    निमंत्रक : शुभम गारवे ,सासणे, गारवे , बागडी , शिंदे
                   </p>
                 </div>
               </div>
@@ -706,6 +773,17 @@ export default function TraditionalInvitation() {
         @keyframes title-shimmer {
           0% { background-position: 0% 50%; }
           100% { background-position: 100% 50%; }
+        }
+
+        .animate-invitation-out {
+          animation: invitation-slide 2.5s ease-out forwards;
+        }
+
+        @keyframes invitation-slide {
+          0% { opacity: 0; transform: translateY(60px) scale(0.9); }
+          30% { opacity: 1; transform: translateY(0) scale(1); }
+          70% { opacity: 1; transform: translateY(0) scale(1); }
+          100% { opacity: 0; transform: translateY(-150px) scale(1.3); }
         }
       `}</style>
     </>
